@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="ka">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+  <title>მინი ხერხი — 50% ფასდაკლება</title>
+  <style>
+    :root{--accent:#00e65f;--accent2:#4dff88;--dark:#0b0f1a;--panel:#0f172a;--text:#f2f5f9;--muted:#a6b0c3;--card:rgba(255,255,255,0.08)}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:var(--dark);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6;font-size:16px}
+    .wrap{max-width:860px;margin:0 auto;padding:16px}
+
+    /* Top bar */
+    .topbar{position:sticky;top:0;z-index:50;background:linear-gradient(90deg,var(--panel),#0d1b2a);border-bottom:1px solid rgba(255,255,255,.06);display:flex;gap:10px;align-items:center;justify-content:space-between;padding:12px 14px}
+    .brand{display:flex;align-items:center;gap:10px}
+    .logo-badge{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;font-weight:800;color:#04120c}
+    .stock{font-size:13px;color:var(--muted)}
+
+    /* Hero */
+    .hero{text-align:center;margin:22px auto}
+    .hero h1{font-size:34px;margin:8px 0 6px}
+    .subtitle{color:var(--muted);margin-bottom:10px;font-size:17px}
+    .sale{font-weight:800;margin:8px auto 12px;display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.35)}
+
+    .price{display:flex;align-items:center;justify-content:center;gap:16px;margin:14px 0}
+    .old{color:#f87171;text-decoration:line-through;font-weight:700;font-size:22px}
+    .new{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#04120c;padding:10px 18px;border-radius:14px;font-weight:900;font-size:24px;box-shadow:0 8px 28px rgba(34,197,94,.34)}
+
+    .cta{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+    .btn{flex:1 1 240px;max-width:380px;display:block;text-align:center;padding:15px;border-radius:14px;border:none;font-weight:800;cursor:pointer;font-size:17px}
+    .btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#04120c;box-shadow:0 8px 26px rgba(0,230,95,.3)}
+    .btn.ghost{background:transparent;border:1px solid var(--card);color:var(--text)}
+
+    .img-box{margin:16px auto;background:var(--card);border-radius:16px;padding:12px;text-align:center;max-width:760px}
+    .img-box img{max-width:100%;border-radius:12px}
+
+    .badges{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:12px 0}
+    .badge{background:var(--card);padding:8px 12px;border-radius:999px;font-size:14px;border:1px solid rgba(255,255,255,.08)}
+
+    .card{background:var(--panel);padding:18px;border-radius:16px;margin:18px 0;border:1px solid rgba(255,255,255,.06)}
+    .card h3{margin:0 0 10px;font-size:22px;text-align:center}
+
+    .specs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .spec{background:rgba(255,255,255,0.04);padding:12px;border-radius:12px;font-size:15px;text-align:center}
+
+    .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+    .step{background:rgba(255,255,255,0.04);padding:12px;border-radius:12px;text-align:center}
+    .step b{display:block;margin-bottom:8px;font-size:18px}
+    @media (max-width:640px){
+      .specs{grid-template-columns:1fr 1fr}
+      .steps{grid-template-columns:1fr 1fr}
+    }
+
+    .reviews h3{text-align:left}
+    .rev{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,0.04);padding:12px;border-radius:12px;margin-top:10px}
+    .avatar{width:36px;height:36px;border-radius:999px;background:linear-gradient(135deg,#64748b,#1e293b)}
+    .rev b{display:block}
+
+    /* Emphasized form fields */
+    form label{display:block;font-size:14px;color:var(--muted);margin:10px 0 6px}
+    form input{width:100%;padding:16px;border-radius:14px;border:2px solid var(--accent);background:transparent;color:var(--text);font-size:17px;font-weight:700;margin-bottom:16px;box-shadow:0 0 14px rgba(0,230,95,.35)}
+    form input:focus{outline:none;border-color:var(--accent2);box-shadow:0 0 18px rgba(77,255,136,.55)}
+    .btn.submit{width:100%;font-size:18px;box-shadow:0 8px 26px rgba(0,230,95,.35)}
+
+    .notice{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
+    footer{margin:26px 0 10px;text-align:center;color:var(--muted);font-size:12px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo-badge">MS</div>
+        <div>
+          <b>მინი ხერხი (აკუმლატორზე)</b>
+          <div class="stock">აქციით დარჩენილია: <span id="stock">35</span> ცალი</div>
+        </div>
+      </div>
+      <div class="stock">-50% დღეს</div>
+    </header>
+
+    <section class="hero">
+      <h1>დაჭერი სწრაფად და ზუსტად — ერთი ხელით.</h1>
+      <p class="subtitle">მძლავრი, მსუბუქი და უსაფრთხო მინი ელექტრო ჯაჭვის ხერხი ყოველდღიური სამუშაოებისთვის.</p>
+      <div class="price">
+        <div class="old">318 ₾</div>
+        <div class="new">99 ₾ დღეს</div>
+      </div>
+      <div class="cta">
+        <a href="#order" class="btn primary">გააფორმე შეკვეთა</a>
+        <a href="#specs" class="btn ghost">ვრცლები დეტალები</a>
+      </div>
+      <div class="img-box">
+        <img src="images/minisaw.jpg" alt="მინი ხერხი">
+      </div>
+      <div class="badges">
+        <div class="badge">ერთი ხელით გამოყენება</div>
+        <div class="badge">ძლიერი აკუმლატორი</div>
+        <div class="badge">სუფთა სპილენძის ძრავა</div>
+        <div class="badge">სწრაფი ჭრა</div>
+      </div>
+    </section>
+
+    <section id="specs" class="card">
+      <h3>დეტალური ინფორმაცია</h3>
+      <div class="specs">
+        <div class="spec"><b>ძაბვა</b><br>48 ვოლტი</div>
+        <div class="spec"><b>სიჩქარე</b><br>~5 ბრუნი/წამში</div>
+        <div class="spec"><b>დატენვა</b><br>~2 საათი</div>
+        <div class="spec"><b>მუშაობა</b><br>~30 წუთი</div>
+        <div class="spec"><b>წონა</b><br>~1 კგ</div>
+        <div class="spec"><b>ბატარეა</b><br>2x (კომპლექტში*)</div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>რატომ მინი ხერხი?</h3>
+      <ul>
+        <li>კოხტა და ზუსტი კვეთა — იდეალური ბუჩქებისთვის, ფიცრებისთვის და პატარა ხეებისთვის.</li>
+        <li>მცირე დატვირთვა ზურგზე/კისერზე — მსუბუქი დიზაინი.</li>
+        <li>ეკონომიური — აღარ არის საწვავის ხარჯი.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h3>როგორ ხდება შეკვეთა</h3>
+      <div class="steps">
+        <div class="step"><b>1</b> დატოვე შეკვეთა საიტზე</div>
+        <div class="step"><b>2</b> ოპერატორი დაგიკავშირდება</div>
+        <div class="step"><b>3</b> შეფუთვა და მიტანა</div>
+        <div class="step"><b>4</b> თანხა კურიერთან</div>
+      </div>
+    </section>
+
+    <section class="card reviews">
+      <h3>მომხმარებელთა კომენტარები</h3>
+      <div class="rev"><div class="avatar"></div><div>„მსუბუქი და კომპაქტურია, 2 ბატარეა მყოფნის დღიური საქმეებისთვის.“ — <b>ირაკლი შ.</b></div></div>
+      <div class="rev"><div class="avatar"></div><div>„ვფიქრობდი მარტო ტოტებზე იმუშავებდა, მაგრამ ბევრად ძლიერი აღმოჩნდა.“ — <b>ლუკა პ.</b></div></div>
+      <div class="rev"><div class="avatar"></div><div>„საუკეთესო ონლაინ ყიდვა რაც მქონია.“ — <b>ირაკლი ბ.</b></div></div>
+    </section>
+
+    <section id="order" class="card">
+      <h3>შეკვეთის ფორმა</h3>
+      <form id="leadForm">
+        <label for="name">სახელი და გვარი</label>
+        <input id="name" name="name" placeholder="მაგ: ნინო ნინუა" required>
+
+        <label for="phone">ტელეფონი</label>
+        <input id="phone" name="phone" placeholder="5XX XX XX XX" required>
+
+        <button class="btn primary submit" type="submit">გააფორმე შეკვეთა 99 ₾</button>
+        <div id="formMsg" class="notice"></div>
+      </form>
+    </section>
+
+    <footer>
+      © შენი კომპანია — საკონტაქტო: hello@example.com • დელივერი მთელი საქართველოს მასშტაბით
+    </footer>
+  </div>
+
+  <script>
+    // მარაგის მცირე იმიტაცია
+    const stockEl=document.getElementById('stock');
+    let stock=parseInt(stockEl?.textContent||'35',10); stock=Math.max(7, stock - Math.floor(Math.random()*3));
+    if(stockEl) stockEl.textContent=stock;
+
+    // შეკვეთის ფორმა
+    const form=document.getElementById('leadForm');
+    const msg=document.getElementById('formMsg');
+    // ტელეფონის მარტივი ფილტრი: მხოლოდ ციფრები, 9 სიმბოლო
+    const phone=document.getElementById('phone');
+    phone.addEventListener('input',()=>{ phone.value = phone.value.replace(/\D/g,'').slice(0,9); });
+
+    form.addEventListener('submit',e=>{
+      e.preventDefault();
+      const data={name:form.name.value.trim(), phone:phone.value.trim(), ts:new Date().toISOString()};
+      msg.textContent='მადლობა! მალე დაგიკავშირდებით.';
+      form.reset();
+      // რეალურად: fetch('/api/order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+    });
+  </script>
+</body>
+</html>
